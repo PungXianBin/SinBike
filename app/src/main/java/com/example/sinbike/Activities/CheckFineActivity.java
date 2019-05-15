@@ -223,7 +223,7 @@ public class CheckFineActivity extends AppCompatActivity {
                                     transaction.setPaymentId(finePayment.id);
                                     transactionViewModel.create(transaction);
 
-                                    Toast.makeText(CheckFineActivity.this, "Payment has been made sucessfully!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CheckFineActivity.this, "Payment has been made sucessfully!", Toast.LENGTH_LONG).show();
 
                                 } else
                                     Toast.makeText(CheckFineActivity.this, "Insufficient account balance! Please top up!", Toast.LENGTH_SHORT).show();

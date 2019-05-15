@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -156,45 +157,47 @@ public class RentalPaymentBarcodeActivity extends AppCompatActivity {
 
                             totalamount = Double.parseDouble(totalamount1);
                             accountBalance = account.getAccountBalance();
-                            difference = accountBalance - totalamount;
+                            if(accountBalance>0) {
+                                difference = accountBalance - totalamount;
 
-                            account.setAccountBalance(difference);
-                            accountViewModel.update(account);
+                                account.setAccountBalance(difference);
+                                accountViewModel.update(account);
 
-                            Transaction transaction = new Transaction();
-                            transaction.setAmount(totalamount);
-                            transaction.setAccountId(account.id);
-                            transaction.settransactionDate(Timestamp.now());
-                            transaction.setTransactionType(Constants.TRANSACTION_TYPE_RENTAL);
-                            transactionViewModel.create(transaction);
+                                Transaction transaction = new Transaction();
+                                transaction.setAmount(totalamount);
+                                transaction.setAccountId(account.id);
+                                transaction.settransactionDate(Timestamp.now());
+                                transaction.setTransactionType(Constants.TRANSACTION_TYPE_RENTAL);
+                                transactionViewModel.create(transaction);
 
-                            Rental rental = new Rental();
-                            rental.setAccountId(account.id);
-                            rental.setAmount(totalamount);
-                            rental.setRentalDate(Timestamp.now());
-                            rental.setBicycleId(bicycleID);
-                            rentalViewModel.createRental(rental);
+                                Rental rental = new Rental();
+                                rental.setAccountId(account.id);
+                                rental.setAmount(totalamount);
+                                rental.setRentalDate(Timestamp.now());
+                                rental.setBicycleId(bicycleID);
+                                rentalViewModel.createRental(rental);
 
-                          /*  RentalPayment rentalPayment = new RentalPayment();
+                           /* RentalPayment rentalPayment = new RentalPayment();
                             rentalPayment.setAccountId(account.id);
                             rentalPayment.setPaymentDate(Timestamp.now());
                             rentalPayment.setTotalAmount(totalamount);
-                            rentalPayment.setRentalId(rental.id);
+                            rentalPayment.setRentalId("ID");
                             paymentViewModel.createRentalPayment(rentalPayment);*/
 
-                            Intent data = new Intent(getApplicationContext(), RentalPaymentSuccessful.class); //create payment layout
-                            data.putExtra("barcode3", intentData);
-                            data.putExtra("bicycleID", bicycleID);
-                            startActivity(data);
-                            finish();
-                            break;
+                                Intent data = new Intent(getApplicationContext(), RentalPaymentSuccessful.class); //create payment layout
+                                data.putExtra("barcode3", intentData);
+                                data.putExtra("bicycleID", bicycleID);
+                                startActivity(data);
+                                finish();
+                                break;
+                            }else {
+                                Toast.makeText(getApplicationContext(), "Insufficient account balance! Please top up!", Toast.LENGTH_SHORT).show();
+                            }
+
                         } else {
-                            //Intent data1 = new Intent(getApplicationContext(), RentalPaymentActivity.class);
-                            //startActivity(data1);
-                            //finish();
-                            //Looper.prepare();
-                            //Toast.makeText(getApplicationContext(), "Invalid parking lot qrcode. Please scan again!", Toast.LENGTH_SHORT).show();
-                            //Looper.loop();
+                            Looper.prepare();
+                            Toast.makeText(getApplicationContext(), "Invalid parking lot qrcode. Please scan again!", Toast.LENGTH_SHORT).show();
+                            Looper.loop();
                             break;
                         }
                     }

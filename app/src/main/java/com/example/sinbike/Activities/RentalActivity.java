@@ -77,12 +77,9 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
     List <Bicycle> tempBicycleList = new ArrayList<>();
     AccountViewModel accountViewModel;
     Account account;
-    List<Double> latitude = new ArrayList<>();
-    List<Double> longtitude = new ArrayList<>();
     Marker bicycleMarker;
     Map<Marker, List<Bicycle>> markerMap;
     SupportMapFragment mapFragment;
-    List<GeoPoint> geoPoint = new ArrayList<>();
     ParkingLotViewModel parkingLotViewModel;
     List<ParkingLot> parkingLots = new ArrayList<>();
     List<GeoPoint> parkingCoordinates = new ArrayList<>();
@@ -96,6 +93,7 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
     LatLng clickLatLng;
     ReservationViewModel reservationViewModel;
     List<Reservation> reservationList = new ArrayList<>();
+    Marker onClickMarker;
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -123,20 +121,13 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
                 finish();
             }
         });
-        //geoPoint.clear();
-       // parkingLotLatitude.clear();
-        //parkingLotLongtitude.clear();
-        //parkingCoordinates.clear();
-        //tempBicycleList.clear();
-        //bicycleList.clear();
-
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
             checkUserLocationPermission();
         }
 
-       mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
@@ -148,10 +139,6 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
             bicycleList = listResource.data();
             for(int y=0; y < bicycleList.size();y++){
                 tempBicycleList.add(bicycleList.get(y));
-               // geoPoint.add(bicycleList.get(y).getCoordinate());
-
-                //latitude.add(geoPoint.get(y).getLatitude());
-                //longtitude.add(geoPoint.get(y).getLongitude());
             }
             addBicycleMarker(bicycleList);
         });
@@ -230,10 +217,10 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
                             clickLatLng = bicycleMarkerList.get(y).getPosition();
                             return false;
                         }
-                 }
+                    }
                     return true;
-            }
-        });
+                }
+        }   );
     }
 
     public void initViewModel(){
@@ -321,11 +308,7 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
 
         currentUserLocationMarker = map.addMarker(markerOptions);
 
-        //  map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f));
-        // map.animateCamera(CameraUpdateFactory.zoomBy(14));
-
-
 
         FirebaseApp.initializeApp(this);
 
@@ -392,7 +375,9 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
     public void onInfoWindowClick(Marker marker) {
         for (int y = 0; y<bicycleMarkerList.size(); y++){
        if(marker.equals(bicycleMarkerList.get(y))){
+           onClickMarker = bicycleMarkerList.get(y);
            position = bicycleMarkerList.get(y).getPosition();
+
            Intent a = new Intent(RentalActivity.this, ReservationPopActivity.class);
            a.putExtra("coordinate", String.valueOf(position));
            startActivity(a);
