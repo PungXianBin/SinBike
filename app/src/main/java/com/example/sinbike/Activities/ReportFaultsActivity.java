@@ -145,7 +145,7 @@ public class ReportFaultsActivity extends AppCompatActivity implements OnClickLi
         AlertDialog dialog = new AlertDialog.Builder(c)
                 .setMessage("Thank you for your feedback. " +
                         "Our operation team will collect, fix the bike, and redeploy for further use as soon as possible. " +
-                        "Further clarifications, you can email to us at support.SinBike@hotmail.com")
+                        "Further clarifications, you can email to us at contactus@sinbike.com")
                 .setPositiveButton("Close", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

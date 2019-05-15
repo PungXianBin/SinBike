@@ -52,27 +52,27 @@
       },
       "oauth_client": [
         {
-          "client_id": "542381739622-cfvapioj7f9rjko8tgec1hpvab4qqssd.apps.googleusercontent.com",
+          "client_id": "542381739622-cf6q7bpf4fk4e5m03rksbr75v1cntq24.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.sinbike",
-            "certificate_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+            "certificate_hash": "1198d178aca7162f67875b96e822bdf1ca22c7be"
           }
         },
         {
-          "client_id": "542381739622-pi5ve8u0enhqmk9qhpf4dvv1khii0fhf.apps.googleusercontent.com",
+          "client_id": "542381739622-som5kec1i2cf2nutdm7u65dtibnldvea.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.sinbike",
-            "certificate_hash": "7e8887d6fe9643781edde353740198d894b70cd7"
+            "certificate_hash": "23c97cba6550cacd7167c39467506e0d4060db0b"
           }
         },
         {
-          "client_id": "542381739622-976tndiokkkvi0mo3e9t0m5pvvuqp29h.apps.googleusercontent.com",
+          "client_id": "542381739622-k476jt4jcp91u6d6p54dn8pd9j0tq574.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.sinbike",
-            "certificate_hash": "232d750b90eeed2c15bc946c46564a28465434cb"
+            "certificate_hash": "3a83e9a96489286ea1c9c6b083feec5e8e09bd09"
           }
         },
         {
@@ -84,11 +84,27 @@
           }
         },
         {
-          "client_id": "542381739622-k476jt4jcp91u6d6p54dn8pd9j0tq574.apps.googleusercontent.com",
+          "client_id": "542381739622-976tndiokkkvi0mo3e9t0m5pvvuqp29h.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.sinbike",
-            "certificate_hash": "3a83e9a96489286ea1c9c6b083feec5e8e09bd09"
+            "certificate_hash": "232d750b90eeed2c15bc946c46564a28465434cb"
+          }
+        },
+        {
+          "client_id": "542381739622-pi5ve8u0enhqmk9qhpf4dvv1khii0fhf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sinbike",
+            "certificate_hash": "7e8887d6fe9643781edde353740198d894b70cd7"
+          }
+        },
+        {
+          "client_id": "542381739622-cfvapioj7f9rjko8tgec1hpvab4qqssd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sinbike",
+            "certificate_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
           }
         },
         {

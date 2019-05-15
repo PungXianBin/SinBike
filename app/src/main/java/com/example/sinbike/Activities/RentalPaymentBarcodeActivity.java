@@ -204,6 +204,10 @@ public class RentalPaymentBarcodeActivity extends AppCompatActivity {
         fine.setLocation("Pasir Ris");
         fine.setStatus(Constants.FINE_NOTPAID);
         fineViewModel.createFine(fine);
+
+        Intent n = new Intent(RentalPaymentBarcodeActivity.this, RentalActivity.class);
+        startActivity(n);
+        finish();
     }
 
     @Override
