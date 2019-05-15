@@ -27,11 +27,13 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.sinbike.POJO.Account;
 import com.example.sinbike.POJO.Bicycle;
 import com.example.sinbike.POJO.ParkingLot;
+import com.example.sinbike.POJO.Reservation;
 import com.example.sinbike.R;
 import com.example.sinbike.Repositories.common.Resource;
 import com.example.sinbike.ViewModels.AccountViewModel;
 import com.example.sinbike.ViewModels.BicycleViewModel;
 import com.example.sinbike.ViewModels.ParkingLotViewModel;
+import com.example.sinbike.ViewModels.ReservationViewModel;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -88,8 +90,12 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
     List<Double> parkingLotLongtitude = new ArrayList<>();
     Marker parkingLotMarker;
     Map<Marker, List<ParkingLot>> parkingLotMarkerMap;
-
-
+    List<Marker> bicycleMarkerList = new ArrayList<>();
+    LatLng position;
+    LatLng latLng;
+    LatLng clickLatLng;
+    ReservationViewModel reservationViewModel;
+    List<Reservation> reservationList = new ArrayList<>();
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -166,10 +172,20 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
             }
         });
 
+        reservationViewModel.getAllReservation(account.id).removeObservers(this);
+        reservationViewModel.getAllReservation(account.id).observe(this, new Observer<com.example.sinbike.Repositories.common.Resource<List<Reservation>>>() {
+            @Override
+            public void onChanged(Resource<List<Reservation>> listResource) {
+                reservationList = listResource.data();
+            }
+        });
+
         RentQR.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RentalActivity.this, RentalBarcodeActivity.class));
+                Intent r = new Intent(RentalActivity.this, RentalBarcodeActivity.class);
+                r.putExtra("coordinate",String.valueOf(latLng));
+                startActivity(r);
             }
         });
     }
@@ -204,8 +220,20 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
         }
         ReservationClickerAdapter markerInfoWindowAdapter = new ReservationClickerAdapter(getApplicationContext());
         googleMap.setInfoWindowAdapter(markerInfoWindowAdapter);
-
         googleMap.setOnInfoWindowClickListener(this::onInfoWindowClick);
+
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                for (int y = 0; y<bicycleMarkerList.size(); y++) {
+                        if (marker.equals(bicycleMarkerList.get(y))) {
+                            clickLatLng = bicycleMarkerList.get(y).getPosition();
+                            return false;
+                        }
+                 }
+                    return true;
+            }
+        });
     }
 
     public void initViewModel(){
@@ -215,6 +243,7 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
         this.account = accountViewModel.getAccount();
         this.parkingLotViewModel = ViewModelProviders.of(this).get(ParkingLotViewModel.class);
         this.parkingLotViewModel.setLifecycleOwner(this);
+        this.reservationViewModel = ViewModelProviders.of(this).get(ReservationViewModel.class);
     }
 
     public boolean checkUserLocationPermission()
@@ -284,7 +313,7 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
             currentUserLocationMarker.remove();
         }
 
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        latLng = new LatLng(location.getLatitude(), location.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("User Current Location");
@@ -305,8 +334,6 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
             LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
         }
     }
-
-
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
@@ -346,6 +373,7 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
                 bicycleMarker = this.map.addMarker(new MarkerOptions()
                         .position(new LatLng(tempBicycleList.get(e).getCoordinate().getLatitude(), tempBicycleList.get(e).getCoordinate().getLongitude()))
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.bicycle_icon)));
+                bicycleMarkerList.add(bicycleMarker);
         }
         markerMap.put(bicycleMarker, tempBicycleList);
     }
@@ -360,18 +388,17 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
         parkingLotMarkerMap.put(parkingLotMarker, tempParkingLotList);
     }
 
-    public boolean onMarkerClick (Marker marker) {
-        List<Bicycle> bicycle = markerMap.get(marker);
-        Intent intent = new Intent(RentalActivity.this , PopActivity.class);
-        startActivity(intent);
-        finish();
-        return false;
-    }
-
     @Override
     public void onInfoWindowClick(Marker marker) {
-       Intent n = new Intent(RentalActivity.this, ReservationPopActivity.class);
-       startActivity(n);
+        for (int y = 0; y<bicycleMarkerList.size(); y++){
+       if(marker.equals(bicycleMarkerList.get(y))){
+           position = bicycleMarkerList.get(y).getPosition();
+           Intent a = new Intent(RentalActivity.this, ReservationPopActivity.class);
+           a.putExtra("coordinate", String.valueOf(position));
+           startActivity(a);
+            }
+        }
+
     }
 }
 

@@ -3,6 +3,8 @@ package com.example.sinbike.Activities;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
@@ -38,6 +40,9 @@ import com.google.firebase.Timestamp;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RentalPaymentBarcodeActivity extends AppCompatActivity {
 
@@ -59,6 +64,9 @@ public class RentalPaymentBarcodeActivity extends AppCompatActivity {
 
     double accountBalance, difference, totalamount;
     String totalamount1;
+    Geocoder geocoder;
+    List<Address> addresses = null;
+    String from_lat_lng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +83,8 @@ public class RentalPaymentBarcodeActivity extends AppCompatActivity {
                 }
             }
         });
+
+        geocoder = new Geocoder(this, Locale.getDefault());
     }
 
     private void initViews() {
@@ -143,6 +153,7 @@ public class RentalPaymentBarcodeActivity extends AppCompatActivity {
                             Bundle extras = getIntent().getExtras();
                             totalamount1 = extras.getString("totalamount2");
                             String bicycleID = extras.getString("bicycleID");
+
                             totalamount = Double.parseDouble(totalamount1);
                             accountBalance = account.getAccountBalance();
                             difference = accountBalance - totalamount;
@@ -196,14 +207,33 @@ public class RentalPaymentBarcodeActivity extends AppCompatActivity {
     public void onBackPressed() {
         Bundle extras = getIntent().getExtras();
         String bicycleID = extras.getString("bicycleID");
+        String coordinate = extras.getString("coordinate");
+        Matcher m = Pattern.compile("\\(([^)]+)\\)").matcher(coordinate);
+        while(m.find()) {
+            from_lat_lng = m.group(1) ;
+        }
+        String[] latlong =  from_lat_lng.split(",");
+        double latitude = Double.parseDouble(latlong[0]);
+        double longitude = Double.parseDouble(latlong[1]);
+        try {
+            addresses = geocoder.getFromLocation(latitude, longitude, 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String address = addresses.get(0).getAddressLine(0);
+
         double fineAmount = 5;
         Fine fine = new Fine();
         fine.setAccountId(account.id);
         fine.setAmount(fineAmount);
         fine.setFineDate(Timestamp.now());
-        fine.setLocation("Pasir Ris");
+        fine.setLocation(address);
         fine.setStatus(Constants.FINE_NOTPAID);
         fineViewModel.createFine(fine);
+
+        Intent n = new Intent(RentalPaymentBarcodeActivity.this, RentalActivity.class);
+        startActivity(n);
+        finish();
     }
 
     @Override

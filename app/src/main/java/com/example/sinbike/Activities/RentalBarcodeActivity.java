@@ -116,8 +116,11 @@ public class RentalBarcodeActivity extends AppCompatActivity {
                     intentData = barcodes.valueAt(0).displayValue; // Retrieving text from QR Code
                     for (int i = 0; i < lst.size(); i++) {
                             if(intentData.trim().equals(lst.get(i).trim())) {
+                                Bundle s = getIntent().getExtras();
+                                String coordinate = s.getString("coordinate");
                             Intent data = new Intent(getApplicationContext(), PopActivity.class);
                             data.putExtra("barcode9", intentData);
+                            data.putExtra("coordinate", String.valueOf(coordinate));
                             startActivity(data);
                             finish();
                             break;

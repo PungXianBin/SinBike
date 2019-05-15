@@ -12,13 +12,23 @@ public class Reservation extends Model {
     private @ServerTimestamp Timestamp reservationDate;
     private boolean reservationStatus;
     private String bicycleId;
+    String accountId;
 
     public Reservation() {
     }
 
-    public Reservation(Timestamp reservationDate, boolean reservationStatus) {
+    public Reservation(String accountId, Timestamp reservationDate, boolean reservationStatus) {
+        this.accountId = accountId;
         this.reservationDate = reservationDate;
         this.reservationStatus = reservationStatus;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     public Timestamp getReservationDate() {
@@ -29,7 +39,7 @@ public class Reservation extends Model {
         this.reservationDate = reservationDate;
     }
 
-    public boolean isReservationStatus() {
+    public boolean getReservationStatus() {
         return reservationStatus;
     }
 

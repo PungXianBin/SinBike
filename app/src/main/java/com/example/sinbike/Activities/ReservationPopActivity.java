@@ -16,8 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.sinbike.Constants;
+import com.example.sinbike.POJO.Account;
 import com.example.sinbike.POJO.Reservation;
 import com.example.sinbike.R;
+import com.example.sinbike.ViewModels.AccountViewModel;
 import com.example.sinbike.ViewModels.ReservationViewModel;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.Timestamp;
@@ -38,6 +40,9 @@ public class ReservationPopActivity extends AppCompatActivity {
     private long timeLeftInMilliseconds = 600000; //10mins
     private boolean timerRunning;
     ReservationViewModel reservationViewModel;
+    Reservation reservation;
+    AccountViewModel accountViewModel;
+    Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +65,11 @@ public class ReservationPopActivity extends AppCompatActivity {
         roundingalone = AnimationUtils.loadAnimation(this, R.anim.roundingalone);
         icanchor.startAnimation(roundingalone);
 
-
+        reservation = new Reservation();
+        reservation.setReservationDate(Timestamp.now());
+        reservation.setReservationStatus(Constants.RESERVATION_RESERVE);
+        reservation.setAccountId(account.id);
+        reservationViewModel.createReservation(reservation);
 
        countDownTimer=  new CountDownTimer(600000, 1000) {
 
@@ -69,12 +78,8 @@ public class ReservationPopActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
-
-                Reservation reservation = new Reservation();
-                reservation.setReservationDate(Timestamp.now());
-                reservation.setReservationStatus(Constants.RESERVATION_RESERVE);
-                reservationViewModel.createReservation(reservation);
-
+                reservation.setReservationStatus(Constants.RESERVATION_OPEN);
+                reservationViewModel.update(account.id, reservation);
 
                 Toast.makeText(ReservationPopActivity.this, "Expired! Reservation Released", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ReservationPopActivity.this , RentalActivity.class);
@@ -87,13 +92,31 @@ public class ReservationPopActivity extends AppCompatActivity {
         btnunlock.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ReservationPopActivity.this, RentalBarcodeActivity.class));
+                countDownTimer.cancel();
+                Bundle s = getIntent().getExtras();
+                String coordinate = s.getString("coordinate");
+                finish();
+                Intent e = new Intent(ReservationPopActivity.this, RentalBarcodeActivity.class);
+                e.putExtra("coordinate", String.valueOf(coordinate));
+                startActivity(e);
             }
         });
     }
 
     public void initViews(){
         this.reservationViewModel = ViewModelProviders.of(this).get(ReservationViewModel.class);
+        this.accountViewModel = ViewModelProviders.of(this).get(AccountViewModel.class);
+        this.account = accountViewModel.getAccount();
+    }
+
+    @Override
+    public void onBackPressed() {
+        onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
 

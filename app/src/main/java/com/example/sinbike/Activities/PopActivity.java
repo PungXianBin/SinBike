@@ -23,7 +23,7 @@ public class PopActivity extends Activity {
     TextView textView;
     Animation roundingalone;
     Chronometer timer;
-    int count=0;
+    int count=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class PopActivity extends Activity {
                 while(!isInterrupted()){
 
                     try {
-                        Thread.sleep(1200); //2mins
+                        Thread.sleep(120000); //2mins
 
                         runOnUiThread(new Runnable() {
 
@@ -83,12 +83,15 @@ public class PopActivity extends Activity {
         btnget.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                timer.stop();
                 Bundle s = getIntent().getExtras();
                 String bicycleId = s.getString("barcode9");
+                String coordinate = s.getString("coordinate");
                 Intent n = new Intent(PopActivity.this, RentalPaymentActivity.class);
                 n.putExtra("totalcost", textView.getText().toString());
                 n.putExtra("time", timer.getText().toString());
                 n.putExtra("bicycleID", bicycleId);
+                n.putExtra("coordinate", String.valueOf(coordinate));
                 startActivity(n);
             }
         });

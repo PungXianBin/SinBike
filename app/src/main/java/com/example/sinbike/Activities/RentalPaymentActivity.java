@@ -67,9 +67,11 @@ public class RentalPaymentActivity
 
                 Bundle extras = getIntent().getExtras();
                 String bicycleID = extras.getString("bicycleID");
+                String coordinate = extras.getString("coordinate");
                 Intent n = new Intent(getApplicationContext(), RentalPaymentBarcodeActivity.class);
                 n.putExtra("totalamount2", String.valueOf(totalamount));
                 n.putExtra("bicycleID", bicycleID);
+                n.putExtra("coordinate", String.valueOf(coordinate));
                 startActivity(n);
             }
         });
