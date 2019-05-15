@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:context=".TopUpFragment"
+        android:padding="10dp">
+
+
+        <TextView
+            android:id="@+id/topup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Top Up Amount"
+            android:textSize="25sp"
+            android:layout_marginEnd="70dp"
+            android:textColor="@color/black"/>
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="50dp"/>
+
+        <EditText
+            android:id="@+id/amt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Amount"
+            android:inputType="number"
+            android:digits="0123456789."
+            android:maxLength="4"
+            android:textSize="25sp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:backgroundTint="@color/black"/>
+
+        <TextView
+            android:id="@+id/min_amt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="* Minimum 10 SGD"
+            android:textSize="20sp"
+            android:layout_marginEnd="70dp"
+            android:textColor="@color/gray"/>
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="30dp"/>
+
+        <Button
+            android:id="@+id/topupBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Top Up"
+            android:textColor="@color/black"
+            android:background="@drawable/signup"/>
+
+    </LinearLayout>
+
+</FrameLayout>

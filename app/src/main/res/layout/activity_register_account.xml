@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:gravity="center">
+
+    <include
+        android:id='@+id/toolbar'
+        layout='@layout/toolbar'
+        android:layout_width="363dp"
+        android:layout_height="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.939"
+        app:layout_constraintStart_toStartOf="@+id/signupName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/signupName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/email"
+        android:drawableLeft="@drawable/ic_account_box_black_24dp"
+        android:drawablePadding="10dp"
+        android:hint="Name"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/signupEmail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/signupEmail"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <EditText
+        android:id="@+id/signupEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/email"
+        android:drawableLeft="@drawable/ic_email_black_24dp"
+        android:drawablePadding="10dp"
+        android:hint="Email"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/signupPassword"
+        app:layout_constraintStart_toStartOf="@+id/signupPassword"
+        app:layout_constraintTop_toBottomOf="@+id/signupName" />
+
+    <EditText
+        android:id="@+id/signupPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/email"
+        android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+        android:drawablePadding="10dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/signupPhone"
+        app:layout_constraintStart_toStartOf="@+id/signupPhone"
+        app:layout_constraintTop_toBottomOf="@+id/signupEmail" />
+
+
+    <EditText
+        android:id="@+id/signupPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/email"
+        android:drawableLeft="@drawable/ic_phone_black_24dp"
+        android:drawablePadding="10dp"
+        android:hint="Telephone Number"
+        android:inputType="date"
+        android:maxLength="8"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/signupDOB"
+        app:layout_constraintStart_toStartOf="@+id/signupDOB"
+        app:layout_constraintTop_toBottomOf="@+id/signupPassword" />
+
+    <EditText
+        android:id="@+id/signupDOB"
+        android:inputType="date"
+        android:digits="0123456789/"
+        android:maxLength="10"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/email"
+        android:drawableLeft="@drawable/ic_date_range_black_24dp"
+        android:drawablePadding="10dp"
+        android:hint="DD/MM/YYYY"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signupPhone" />
+
+
+    <RadioGroup
+        android:id="@+id/rdGender"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/email"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/space2"
+        app:layout_constraintHorizontal_bias="0.725"
+        app:layout_constraintStart_toStartOf="@+id/space2"
+        app:layout_constraintTop_toBottomOf="@+id/signupDOB">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginVertical="10dp"
+            android:drawableLeft="@drawable/ic_wc_black_24dp"
+            android:drawablePadding="7dp"
+            android:editable="false"
+            android:hint="Gender"
+            android:padding="10dp"
+            android:paddingRight="20dp"
+            android:textAlignment="gravity"
+            android:textColor="#000000"
+            android:textColorHint="#000000" />
+
+
+        <RadioButton
+            android:id="@+id/rbMale"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_weight="1"
+            android:buttonTint="@color/black"
+            android:text="Male"
+            android:textColor="@color/black" />
+
+        <RadioButton
+            android:id="@+id/rbFemale"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_weight="1"
+            android:buttonTint="@color/black"
+            android:text="Female"
+            android:textColor="@color/black" />
+    </RadioGroup>
+
+
+    <Space
+        android:id="@+id/space2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="21dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvTermsandCondition"
+        app:layout_constraintEnd_toEndOf="@+id/tvTermsandCondition"
+        app:layout_constraintStart_toEndOf="@+id/btnSubmit"
+        app:layout_constraintTop_toBottomOf="@+id/rdGender" />
+
+
+    <CheckBox
+        android:id="@+id/cbTermsAndCondition"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginLeft="23dp"
+        android:buttonTint="@color/black"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space2" />
+
+    <TextView
+        android:id="@+id/tvTermsandCondition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        android:onClick="onClick"
+        android:text="Terms and Conditions"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+        app:layout_constraintStart_toEndOf="@+id/cbTermsAndCondition" />
+
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/signup"
+        android:padding="5dp"
+        android:shadowColor="@android:color/transparent"
+        android:text="Submit"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvTermsandCondition" />
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/email"
+        android:padding="5dp"
+        android:shadowColor="@android:color/transparent"
+        android:text="Clear"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/space3" />
+
+
+    <Space
+        android:id="@+id/space3"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/space2"
+        app:layout_constraintStart_toStartOf="@+id/space2"
+        app:layout_constraintTop_toBottomOf="@+id/btnSubmit" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

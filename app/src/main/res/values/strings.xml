@@ -1,0 +1,110 @@
+<resources>
+    <string name="app_name">SinBike</string>
+    <!-- Strings related to login -->
+    <string name="error_invalid_password">This password is too short</string>
+
+    <string name="add_payment_method">Payment Method</string>
+    <string name="tv_exp_date">Expiry Date</string>
+    <string name="tv_cc_no">Card Number</string>
+    <string name="cc_no">Card Number</string>
+    <string name="cvv_no">CVV Number/ CCV Number</string>
+    <string name="saveBtn">Save</string>
+    <string name="cancelBttn">Cancel</string>
+    <string name="spinner_mm">MM</string>
+    <string name="spinner_yyyy">YYYY</string>
+    <string name="slash"> / </string>
+    <string name="tv_card_type">Card Type</string>
+    <string name="desc">images</string>
+    <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
+    <string name="topupBtn">Top Up</string>
+    <string name="topup_amt">Top Up Amount</string>
+    <string name="min_amt">* Minimum 5 SGD</string>
+
+    <string-array name="months">
+        <item>Month</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+
+    </string-array>
+    -
+    <string-array name="years">
+        <item>Year</item>
+        <item>2019</item>
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+        <item>2025</item>
+        <item>2026</item>
+        <item>2027</item>
+        <item>2028</item>
+        <item>2029</item>
+        <item>2030</item>
+    </string-array>
+
+
+    <string name="title_activity_login">Sign in</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_manage_profile">ManageProfile</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="new_pass">New Password</string>
+    <string name="btn_change">Change</string>
+    <string name="btn_remove">Remove</string>
+    <string name="change_password">Change Password</string>
+    <string name="remove_user">Remove user</string>
+    <string name="btn_sign_out">Sign Out</string>
+    <string name="email_id">Email ID</string>
+    <string name="minimum_password">Password too short, enter minimcharacters!</string>
+    <string name="tv_cvv_no">CVV Number/ CCV Number</string>
+    <string name="save">Save</string>
+    <string name="valid">Form is valid</string>
+    <string name="invalid">Form is invalid</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="tv_view_transaction">View Transactions</string>
+    <string name="tv_payment_method">Payment Method</string>
+    <string name="tv_add_payment_method">Add Payment Method</string>
+    <string name="successful_topup">Transaction has been successful. Go to My Wallet Page to view new balance</string>
+    <string name="closeBtn">Close</string>
+    <string name="expDate">MM/YY</string>
+
+
+    <string-array name="transaction">
+        <item>View All</item>
+        <item>Fines</item>
+        <item>Top Up</item>
+        <item>Spending</item>
+    </string-array>
+
+
+</resources>

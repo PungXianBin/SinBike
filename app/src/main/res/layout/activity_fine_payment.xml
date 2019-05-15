@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardBackgroundColor="@color/cardview_dark_background"
+    android:id="@+id/FinePaymentLayout">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="303dp"
+        android:layout_margin="8dp"
+        tools:layout_editor_absoluteX="-10dp"
+        tools:layout_editor_absoluteY="-3dp">
+
+        <ImageButton
+            android:id="@+id/fine_close"
+            android:layout_width="57dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="280dp"
+            android:background="@null"
+            android:src="@drawable/close1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_conversion_wrapHeight="216"
+            tools:layout_conversion_wrapWidth="214" />
+
+        <TextView
+            android:id="@+id/textAccountBalance"
+            android:layout_width="213dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="85dp"
+            android:layout_marginEnd="135dp"
+            android:layout_marginBottom="128dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.071"
+            card_view:layout_constraintVertical_bias="0.017"
+            tools:layout_conversion_wrapHeight="184"
+            tools:layout_conversion_wrapWidth="900" />
+
+        <TextView
+            android:id="@+id/finePayment_Title"
+            android:layout_width="225dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="94dp"
+            android:layout_marginBottom="229dp"
+            android:text="Payment"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintVertical_bias="0.0"
+            tools:layout_conversion_wrapHeight="176"
+            tools:layout_conversion_wrapWidth="900" />
+
+        <TextView
+            android:id="@+id/textAmount"
+            android:layout_width="213dp"
+            android:layout_height="32dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.103"
+            card_view:layout_constraintVertical_bias="0.498"
+            tools:layout_conversion_wrapHeight="176"
+            tools:layout_conversion_wrapWidth="900" />
+
+        <Button
+            android:id="@+id/confirmBtn"
+            android:layout_width="106dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="252dp"
+            android:layout_marginTop="243dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="349dp"
+            android:text="Confirm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.627"
+            card_view:layout_constraintVertical_bias="0.0"
+            tools:layout_conversion_wrapHeight="192"
+            tools:layout_conversion_wrapWidth="424" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

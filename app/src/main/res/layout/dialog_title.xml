@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="500dp"
+    android:background="#777777"
+    android:padding="3dp">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5px"
+        app:layout_constraintBottom_toTopOf="@+id/tvClose"
+        tools:layout_editor_absoluteX="16dp">
+
+        <TextView
+            android:id="@+id/tvpdpa"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:text="I hereby authorise, agree and consent to allow SinBike and its affiliates to:
+a.	collect, use, disclose and/or process personal data about me that I had previously provided SinBike, that I now provide SinBike, that I may in future provide SinBike with and/or that SinBike possesses about me including but not limited to my name, my date of birth, my identification number, my email address, my telephone numbers, my address for the following purposes:
+•	facilitating, processing, dealing with, administering, managing and/or maintaining our relationship with SinBike;
+•	dealing in any matters relating to SinBike products, services and activities;
+•	carrying out due diligence and other screening activities, or to prevent or investigate any fraud or breach of contract or unlawful activity, or complying with or as required by any applicable law, governmental or regulatory requirements of any relevant jurisdiction;
+•	conducting research, analysis and development activities (including but not limited to data analytics, surveys and/or profiling) to enhance SinBike products, services and/or operations, and/or otherwise for SinBike business operations and purposes;
+•	storing, hosting, backing up (whether for disaster recovery or otherwise) of my personal data, whether within or outside Singapore,
+(collectively the “Purposes”);
+b.	disclose personal data about me to SinBike third party service providers and agents (“Representatives”) that are engaged by SinBike to perform certain functions in connection with the Purposes, so long as disclosure is necessary to enable such Representatives to perform the said functions. The Representatives may be located within or outside Singapore. In this regard, I hereby acknowledge, agree and consent that the said Representatives may, to the extent necessary to perform the said functions, collect, use, disclose and/or process my personal data.
+Should you wish to withdraw your consent in part or whole, please send an email to our Data Protection Officer at sinbike.pdpa.dpo@sg.sinbike.com and provide details of your withdrawal. If you have any questions relating to our collection, use and disclosure of your personal data or the matters set out in this email, you may contact our Data Protection Officer."
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/tvClose"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="16dp" />
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/tvClose"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/grey"
+        android:text="Close"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.988" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

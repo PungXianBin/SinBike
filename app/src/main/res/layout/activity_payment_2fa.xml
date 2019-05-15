@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundwallet"
+    tools:context=".Activities.Payment2FAActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_OTP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="OTP Verification"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="25sp"/>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+
+    <TextView
+        android:id="@+id/tv_phone_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mobile Number"
+        android:layout_gravity="center"
+        android:textSize="25sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_phone_no_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter your Mobile Number"
+        android:textColor="@color/black"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/phone_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mobile Number"
+        android:inputType="phone"
+        android:maxLength="12"
+        android:textSize="25sp"
+        android:digits="+0123456789"
+        android:textColorHint="@color/gray"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/black"/>
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+    <Button
+        android:id="@+id/confirmBtn"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:text="Confirm"
+        android:textSize="15sp"
+        android:background="@drawable/signup"
+        android:textColor="@color/black"/>
+
+
+</LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:id="@+id/tv_veri_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Verification Code"
+        android:layout_gravity="center"
+        android:textSize="25sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_veri_code_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter the OTP sent to your mobile number"
+        android:textColor="@color/black"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/veri_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Verification Code"
+        android:inputType="number"
+        android:maxLength="6"
+        android:textSize="25sp"
+        android:digits="0123456789"
+        android:textColorHint="@color/gray"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/black"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="15dp" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/submitBtn"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="Submit"
+            android:textSize="15sp"
+            android:background="@drawable/signup"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+
+</LinearLayout>
