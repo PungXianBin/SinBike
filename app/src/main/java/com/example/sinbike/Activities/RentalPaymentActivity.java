@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -64,7 +65,7 @@ public class RentalPaymentActivity
         btnpaynow.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(RentalPaymentActivity.this, "Please scan parking lot QrCode!", Toast.LENGTH_LONG).show();
                 Bundle extras = getIntent().getExtras();
                 String bicycleID = extras.getString("bicycleID");
                 String coordinate = extras.getString("coordinate");

@@ -8,7 +8,6 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -61,8 +60,6 @@ public class RentalBarcodeActivity extends AppCompatActivity {
 
     private void initialiseDetectorsAndSources() {
 
-        Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
-
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
                 .build();
@@ -102,17 +99,13 @@ public class RentalBarcodeActivity extends AppCompatActivity {
         barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
             @Override
             public void release() {
-                Toast.makeText(getApplicationContext(), "To prevent memory leaks qrcode scanner has been stopped", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "To prevent memory leaks qrcode scanner has been stopped", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
                 if (barcodes.size() != 0) {
-
-                  //  ToneGenerator toneNotification = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100); /* Setting beep sound */
-                    //toneNotification.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
-
                     intentData = barcodes.valueAt(0).displayValue; // Retrieving text from QR Code
                     for (int i = 0; i < lst.size(); i++) {
                             if(intentData.trim().equals(lst.get(i).trim())) {
@@ -124,15 +117,13 @@ public class RentalBarcodeActivity extends AppCompatActivity {
                             startActivity(data);
                             finish();
                             break;
-                        }else {
-                               // Intent data1 = new Intent(getApplicationContext(), RentalActivity.class);
-                                //startActivity(data1);
-                                //finish();
-                               // Looper.prepare();
-                                //Toast.makeText(getApplicationContext(), "Invalid bicycle qrcode. Please scan again!", Toast.LENGTH_SHORT).show();
-                                //Looper.loop();
-                                break;
-                            }
+                        }/*else {
+                                Toast.makeText(RentalBarcodeActivity.this, "Invalid bicycle qrcode. Please scan again!", Toast.LENGTH_SHORT).show();
+                               Intent data1 = new Intent(getApplicationContext(), RentalActivity.class);
+                               startActivity(data1);
+                               finish();
+                               break;
+                            }*/
                     }
                 }
             }

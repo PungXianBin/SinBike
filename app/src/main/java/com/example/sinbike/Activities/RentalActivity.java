@@ -167,14 +167,18 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
             }
         });
 
-        RentQR.setOnClickListener(new OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent r = new Intent(RentalActivity.this, RentalBarcodeActivity.class);
-                r.putExtra("coordinate",String.valueOf(latLng));
-                startActivity(r);
-            }
-        });
+            RentQR.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(latLng!=null) {
+                    Toast.makeText(RentalActivity.this, "Please scan QrCode on the bicycle!", Toast.LENGTH_LONG).show();
+                    Intent r = new Intent(RentalActivity.this, RentalBarcodeActivity.class);
+                    r.putExtra("coordinate", String.valueOf(latLng));
+                    startActivity(r);
+                    } else
+                        Toast.makeText(RentalActivity.this, "Please ensure your GPS location is enable and make sure your current location appear!", Toast.LENGTH_LONG).show();
+                }
+            });
     }
 
     private void initViews() {
