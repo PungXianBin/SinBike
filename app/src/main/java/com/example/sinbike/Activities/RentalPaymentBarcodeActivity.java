@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -177,13 +176,6 @@ public class RentalPaymentBarcodeActivity extends AppCompatActivity {
                                 rental.setBicycleId(bicycleID);
                                 rentalViewModel.createRental(rental);
 
-                           /* RentalPayment rentalPayment = new RentalPayment();
-                            rentalPayment.setAccountId(account.id);
-                            rentalPayment.setPaymentDate(Timestamp.now());
-                            rentalPayment.setTotalAmount(totalamount);
-                            rentalPayment.setRentalId("ID");
-                            paymentViewModel.createRentalPayment(rentalPayment);*/
-
                                 Intent data = new Intent(getApplicationContext(), RentalPaymentSuccessful.class); //create payment layout
                                 data.putExtra("barcode3", intentData);
                                 data.putExtra("bicycleID", bicycleID);
@@ -193,12 +185,6 @@ public class RentalPaymentBarcodeActivity extends AppCompatActivity {
                             }else {
                                 Toast.makeText(getApplicationContext(), "Insufficient account balance! Please top up!", Toast.LENGTH_SHORT).show();
                             }
-
-                        } else {
-                            Looper.prepare();
-                            Toast.makeText(getApplicationContext(), "Invalid parking lot qrcode. Please scan again!", Toast.LENGTH_SHORT).show();
-                            Looper.loop();
-                            break;
                         }
                     }
                 }
@@ -236,7 +222,6 @@ public class RentalPaymentBarcodeActivity extends AppCompatActivity {
 
         Intent n = new Intent(RentalPaymentBarcodeActivity.this, RentalActivity.class);
         startActivity(n);
-        finish();
     }
 
     @Override

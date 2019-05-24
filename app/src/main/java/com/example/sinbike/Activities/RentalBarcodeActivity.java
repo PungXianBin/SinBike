@@ -115,7 +115,6 @@ public class RentalBarcodeActivity extends AppCompatActivity {
                             data.putExtra("barcode9", intentData);
                             data.putExtra("coordinate", String.valueOf(coordinate));
                             startActivity(data);
-                            finish();
                             break;
                         }/*else {
                                 Toast.makeText(RentalBarcodeActivity.this, "Invalid bicycle qrcode. Please scan again!", Toast.LENGTH_SHORT).show();

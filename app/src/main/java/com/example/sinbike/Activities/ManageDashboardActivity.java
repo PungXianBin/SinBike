@@ -9,12 +9,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.sinbike.Constants;
 import com.example.sinbike.POJO.Account;
+import com.example.sinbike.POJO.Fine;
 import com.example.sinbike.R;
+import com.example.sinbike.Repositories.common.Resource;
 import com.example.sinbike.ViewModels.AccountViewModel;
+import com.example.sinbike.ViewModels.FineViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManageDashboardActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,6 +35,9 @@ public class ManageDashboardActivity extends AppCompatActivity implements View.O
     AccountViewModel accountViewModel;
     Account account;
 
+    FineViewModel fineViewModel;
+    List<Fine> fineList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +46,7 @@ public class ManageDashboardActivity extends AppCompatActivity implements View.O
         this.initViewModel();
         this.init();
         checkAccountStatus(accountViewModel.getAccount());
+        getFineData();
     }
 
     public void init(){
@@ -63,6 +74,7 @@ public class ManageDashboardActivity extends AppCompatActivity implements View.O
     public void initViewModel(){
         accountViewModel = ViewModelProviders.of(this).get(AccountViewModel.class);
         account = accountViewModel.getAccount();
+        this.fineViewModel = ViewModelProviders.of(this).get(FineViewModel.class);
     }
     @Override
     public void onClick(View v) {
@@ -73,6 +85,9 @@ public class ManageDashboardActivity extends AppCompatActivity implements View.O
         } else if (v.getId() == R.id.reportafault_id){
             this.launchReportFault();
         } else if (v.getId() == R.id.checkfine_id){
+            if(fineList.isEmpty()){
+                Toast.makeText(ManageDashboardActivity.this, "You have no parking fine!", Toast.LENGTH_SHORT).show();
+            }else
             this.launchPayFine();
         } else if (v.getId() == R.id.aboutus){
             this.aboutus();
@@ -137,5 +152,15 @@ public class ManageDashboardActivity extends AppCompatActivity implements View.O
             Toast.makeText(getApplicationContext(), "Your account has been closed!", Toast.LENGTH_LONG).show();
             return true;
         }return false;
+    }
+
+    public void getFineData() {
+        fineViewModel.getAllFine(this.account.id).observe(this, new Observer<Resource<List<Fine>>>() {
+            @Override
+            public void onChanged(Resource<List<Fine>> listResource) {
+                fineList.clear();
+                fineList.addAll(listResource.data());
+            }
+        });
     }
 }

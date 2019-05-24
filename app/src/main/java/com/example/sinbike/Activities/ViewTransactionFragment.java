@@ -17,7 +17,6 @@ import com.example.sinbike.R;
 import com.example.sinbike.Repositories.common.Resource;
 import com.example.sinbike.ViewModels.AccountViewModel;
 import com.example.sinbike.ViewModels.TransactionViewModel;
-import com.google.firebase.Timestamp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +30,6 @@ public class ViewTransactionFragment extends Fragment {
     TransactionViewModel transactionViewModel;
     AccountViewModel accountViewModel;
     Account account;
-    List<String> type = new ArrayList<>();
-    List<Timestamp> date = new ArrayList<>();
-    List<Double> amount = new ArrayList<>();
-    List<String> accountId = new ArrayList<>();
-    List<Transaction> transactionList1 = new ArrayList<>();
-    List<Transaction> transactionList2 = new ArrayList<>();
     transactionAdapter transactionAdapter;
 
     @Nullable
@@ -51,7 +44,7 @@ public class ViewTransactionFragment extends Fragment {
 
         populateList();
 
-        transactionAdapter = new transactionAdapter(transactionList2);
+        transactionAdapter = new transactionAdapter(transactionList);
         listView.setAdapter(transactionAdapter);
 
         return view;
@@ -64,33 +57,15 @@ public class ViewTransactionFragment extends Fragment {
         this.transactionViewModel = ViewModelProviders.of(this).get(TransactionViewModel.class);
     }
 
-    public List<Transaction> populateList() {
+    public void populateList() {
         transactionViewModel.getAllTransaction(account.id).removeObservers(this);
         transactionViewModel.getAllTransaction(account.id).observe(this, new Observer<com.example.sinbike.Repositories.common.Resource<List<Transaction>>>() {
             @Override
             public void onChanged(Resource<List<Transaction>> listResource) {
-                transactionList = listResource.data();
-                for (int y = 0; y < transactionList.size(); y++) {
-                    transactionList1.add(transactionList.get(y));
-                }
-                getData();
-
+                transactionList.clear();
+                transactionList.addAll(listResource.data());
+                transactionAdapter.notifyDataSetChanged();
             }
         });
-        return transactionList1;
-    }
-
-    public void getData(){
-        for(int r =0; r < transactionList1.size(); r++){
-            type.add(transactionList1.get(r).getTransactionType());
-            date.add(transactionList1.get(r).gettransactionDate());
-            amount.add(transactionList1.get(r).getAmount());
-            accountId.add(transactionList1.get(r).getAccountId());
-
-            Transaction transaction = new Transaction(amount.get(r), date.get(r), accountId.get(r), type.get(r));
-            transactionList2.add(transaction);
-            transactionAdapter.notifyDataSetChanged();
-        }
-        listView.refreshDrawableState();
     }
 }

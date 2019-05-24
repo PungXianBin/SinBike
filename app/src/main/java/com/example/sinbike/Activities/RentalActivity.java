@@ -387,7 +387,11 @@ public class RentalActivity extends AppCompatActivity implements OnClickListener
            startActivity(a);
             }
         }
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }
 

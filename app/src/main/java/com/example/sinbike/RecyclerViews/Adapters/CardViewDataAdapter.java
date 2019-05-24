@@ -59,7 +59,6 @@ public class CardViewDataAdapter extends
 
         viewHolder.chkSelected.setTag(stList.get(position));
 
-
         viewHolder.chkSelected.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 CheckBox cb = (CheckBox) v;
@@ -69,7 +68,6 @@ public class CardViewDataAdapter extends
                 stList.get(pos).setSelected(cb.isChecked());
             }
         });
-
     }
 
     // Return the size arraylist
